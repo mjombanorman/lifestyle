@@ -1,0 +1,30 @@
+{
+    "name": "miserenkov/yii2-phone-validator",
+    "description": "Yii2 phone validator",
+    "keywords": ["yii2", "phone", "validator"],
+    "type": "yii2-extension",
+    "license": "MIT",
+    "support": {
+        "email": "mi.serenkov@gmail.com",
+        "issues": "https://github.com/miserenkov/yii2-phone-validator/issues",
+        "source": "https://github.com/miserenkov/yii2-phone-validator"
+    },
+    "authors": [
+        {
+            "name": "Misha Serenkov",
+            "email": "mi.serenkov@gmail.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "~2",
+        "giggsey/libphonenumber-for-php": "~7.0"
+    },
+    "require-dev": {
+        "codeception/codeception": "^2.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "miserenkov\\validators\\": "src"
+        }
+    }
+}
