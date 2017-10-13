@@ -10,6 +10,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use backend\modules\products\components\ProductsModuleConstants;
 
 /**
  * ProductsController implements the CRUD actions for Products model.
@@ -43,6 +44,12 @@ class ProductsController extends Controller {
                 ],
             ],
         ];
+    }
+
+    public function init() {
+        $this->MENU = ProductsModuleConstants::MENU_PRODUCTS;
+        $this->SUB_MENU = ProductsModuleConstants::SUB_MENU_ALL;
+        parent::init();
     }
 
     /**

@@ -1,3 +1,8 @@
+<?php
+$this->title = 'Products';
+$this->params['breadcrumbs'][] = ['label' => $this->title, 'url' => ['site/shop']];
+$this->params['breadcrumbs'][] = $model->name;
+?>
 <!-- SHOP SECTION START -->
 <div class="shop-section mb-80">
     <div class="container">
@@ -79,7 +84,7 @@
                     </div>
                     <div class="row">
                         <div class="active-related-product">
-                            <?php $count = 0; ?>
+<?php $count = 0; ?>
                             <?php foreach ($related as $product) { ?>
                                 <?php $count++; ?>
 
@@ -117,17 +122,17 @@
                                     </div>
                                 </div>
                                 <!-- product-item end -->
-                                <?php
-                                if ($count == 3) {
-                                    break;
-                                }
-                                ?>
+    <?php
+    if ($count == 3) {
+        break;
+    }
+    ?>
                             <?php } ?>
                         </div>
                     </div>
                 </div>
             </div>
-            <?= $this->render('sidebar', ['allCategories' => $allCategories]); ?>
+<?= $this->render('sidebar', ['allCategories' => $allCategories]); ?>
         </div>
     </div>
 </div>

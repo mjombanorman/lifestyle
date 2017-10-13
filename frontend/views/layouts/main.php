@@ -41,6 +41,36 @@ $this->title = "Healthy Lifestyle";
                 <?= $this->render("header"); ?>
                 <br>
                 <?php // $this->render("breadcrumb"); ?>
+                <!-- BREADCRUMBS SETCTION START -->
+                <div class="breadcrumbs-section">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="">
+                                    <!--                                <ol class="breadcrumb p-30">
+                                                                        <li><a href="#">Home</a></li>
+                                                                        <li><a href="#">Library</a></li>
+                                                                        <li class="active">Data</li>
+                                                                    </ol>-->
+                                    <?php
+                                    echo
+                                    Breadcrumbs::widget([
+                                        'homeLink' => [
+                                            'label' => '<i class="fa fa-edit"></i>' . Html::encode(Yii::t('yii', 'Home')),
+                                            'url' => Yii::$app->homeUrl,
+                                            'encode' => false,
+                                        ],
+                                        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                                    ]);
+                                    ?>
+                                </div>
+                                <?php echo Alert::widget() ?>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- BREADCRUMBS SETCTION END -->
 
                 <!-- START PAGE CONTENT -->
                 <section id="page-content" class="page-wrapper">

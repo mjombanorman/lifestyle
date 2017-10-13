@@ -7,12 +7,14 @@ use Yii;
 /**
  * This is the model class for table "user_address".
  *
- * @property integer $id
- * @property integer $user_id
+ * @property int $id
+ * @property int $user_id
  * @property string $name
- * @property integer $county
- * @property integer $town
- * @property integer $location
+ * @property int $county
+ * @property int $town
+ * @property int $location
+ * @property double $longitude
+ * @property double $latitude
  * @property string $adddress
  * @property string $created_at
  */
@@ -34,6 +36,7 @@ class UserAddress extends \yii\db\ActiveRecord
         return [
             [['user_id', 'county', 'town', 'location'], 'integer'],
             [['name', 'adddress'], 'required'],
+            [['longitude', 'latitude'], 'number'],
             [['adddress'], 'string'],
             [['created_at'], 'safe'],
             [['name'], 'string', 'max' => 20],
@@ -52,6 +55,8 @@ class UserAddress extends \yii\db\ActiveRecord
             'county' => 'County',
             'town' => 'Town',
             'location' => 'Location',
+            'longitude' => 'Longitude',
+            'latitude' => 'Latitude',
             'adddress' => 'Adddress',
             'created_at' => 'Created At',
         ];

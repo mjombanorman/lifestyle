@@ -3,7 +3,10 @@
 
 use yii\helpers\Html;
 
-$this->title = $this->title . ' - About';
+//$this->title = $this->title . 'About';
+
+$this->title = 'About';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="about-section mb-80">
     <div class="container">

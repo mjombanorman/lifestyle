@@ -10,7 +10,15 @@ use yii\widgets\ActiveForm;
 
 <div class="category-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php
+    $form = ActiveForm::begin([
+                'enableAjaxValidation' => true,
+                'options' => [
+                    'id' => 'add-category',
+                    'enctype' => 'multipart/form-data',
+                ]
+    ]);
+    ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 

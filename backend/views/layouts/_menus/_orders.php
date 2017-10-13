@@ -1,6 +1,13 @@
-<li> <a href="javascript:;"> <i class="material-icons">airplay</i> <span class="title">Orders</span> <span class=" arrow"></span> </a>
+
+<li>
+    <a href="javascript:;"><span class="title">Orders</span>
+        <span class=" arrow"></span></a>
+    <span class="icon-thumbnail"><i class="pg-layouts"></i></span>
     <ul class="sub-menu">
-        <li> <a href="#"> All Orders </a> </li>
+        <li class="">
+            <a href="#"> All Orders</a>
+            <span class="icon-thumbnail">o</span>
+        </li>
 
     </ul>
 </li>

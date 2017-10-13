@@ -1,0 +1,27 @@
+<?php
+
+namespace backend\modules\settings\components;
+
+use Yii;
+use yii\base\Component;
+
+class SettingsModuleConstants extends Component {
+
+    const MENU_SETTINGS = 'MENU_SETTINGS';
+    const SUB_MENU_CONFIG = 'SUB_MENU_CONFIG';
+    const SUB_MENU_ACCESS = 'SUB_MENU_ACCESS';
+    const SUB_SUB_MENU_COUNTRIES = 'SUB_SUB_MENU_COUNTRIES';
+    const SUB_SUB_MENU_COUNTIES = 'SUB_SUB_MENU_COUNTIES';
+    const SUB_SUB_MENU_SUB_COUNTIES = 'SUB_SUB_MENU_SUB_COUNTIES';
+    const SUB_SUB_MENU_TOWNS = 'SUB_SUB_MENU_TOWNS';
+    const SUB_SUB_MENU_CURRENCY = 'SUB_SUB_MENU_CURRENCY';
+    const SUB_SUB_MENU_NF = 'SUB_SUB_MENU_NF';
+    const SUB_SUB_MENU_PM = 'SUB_SUB_MENU_PM';
+    const SUB_SUB_MENU_ASS = 'SUB_SUB_MENU_ASS';
+    const SUB_SUB_MENU_ROLES = 'SUB_SUB_MENU_ROLES';
+    const SUB_SUB_MENU_PERMISSIONS = 'SUB_SUB_MENU_PERMISSIONS';
+    const SUB_SUB_MENU_ROUTES = 'SUB_SUB_MENU_ROUTES';
+    const SUB_SUB_MENU_MENU = 'SUB_SUB_MENU_MENU';
+    const SUB_SUB_MENU_USERS = 'SUB_SUB_MENU_USERS';
+
+}

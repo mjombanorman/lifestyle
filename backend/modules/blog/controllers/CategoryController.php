@@ -8,6 +8,7 @@ use backend\modules\blog\models\CategorySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use backend\modules\blog\components\BlogModuleConstants;
 
 /**
  * CategoryController implements the CRUD actions for Category model.
@@ -26,6 +27,12 @@ class CategoryController extends Controller {
                 ],
             ],
         ];
+    }
+
+    public function init() {
+        $this->MENU = BlogModuleConstants::MENU_BLOG;
+        $this->SUB_MENU = BlogModuleConstants::SUB_MENU_CATEGORY;
+        parent::init();
     }
 
     /**

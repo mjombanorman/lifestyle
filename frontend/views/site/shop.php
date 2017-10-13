@@ -2,6 +2,16 @@
 
 use yii\widgets\LinkPager;
 use yii\base\ErrorException;
+use backend\modules\products\models\Category;
+
+$this->title = 'Shop';
+
+if (isset($_GET['cat'])) {
+    $this->params['breadcrumbs'][] = ['label' => $this->title, 'url' => ['site/shop']];
+    $this->params['breadcrumbs'][] = Category::findOne($_GET['cat'])->name;
+} else {
+    $this->params['breadcrumbs'][] = $this->title;
+}
 ?>
 <?php
 $total = $pagination->totalCount;
@@ -106,7 +116,7 @@ if ($current_page == 1) {
 
                                                     <li>
                                                         <a href="<?= Yii::$app->urlManager->createUrl(['site/view', 'id' => $product->id]); ?>"  title="View Product"><i class="zmdi zmdi-zoom-in"></i></a>
-                                                    </li><?php // Yii::$app->urlManager->createUrl(['site/cart','id'=>$product->id])    ?>
+                                                    </li><?php // Yii::$app->urlManager->createUrl(['site/cart','id'=>$product->id])                    ?>
 
                                                     <li>
                                                         <a href="#" data-url = "<?= Yii::$app->urlManager->createUrl(['site/cart']) ?>" data-id="<?= $product->id ?>" title="Add to cart" class="cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>

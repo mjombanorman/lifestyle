@@ -8,6 +8,7 @@ use backend\modules\products\models\CategorySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use backend\modules\products\components\ProductsModuleConstants;
 
 /**
  * CategoryController implements the CRUD actions for Category model.
@@ -26,6 +27,12 @@ class CategoryController extends Controller {
                 ],
             ],
         ];
+    }
+
+    public function init() {
+        $this->MENU = ProductsModuleConstants::MENU_PRODUCTS;
+        $this->SUB_MENU = ProductsModuleConstants::SUB_MENU_CATEGORY;
+        parent::init();
     }
 
     /**
@@ -61,13 +68,8 @@ class CategoryController extends Controller {
      */
     public function actionCreate() {
         $model = new Category();
-        if ($model->load(Yii::$app->request->post())) {
-            if (Yii::$app->request->isAjax) {
-                Yii::$app->response = Response::FORMAT_JSON;
-                return ActiveForm::validate($model);
-            }
-            $model->created_by = Yii::$app->user->identity->id;
-            $model->save(false);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', 'Category added successfully');
             return $this->redirect(['index']);
         } else {

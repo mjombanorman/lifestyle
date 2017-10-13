@@ -1,73 +1,48 @@
 <?php
 
 use backend\modules\products\models\Products; ?>
-<!-- BANNER-SECTION START -->
-<div class="banner-section ptb-60">
+
+
+<!-- UP COMMING PRODUCT SECTION START -->
+<div class="up-comming-product-section mb-80">
     <div class="container">
         <div class="row">
-            <!-- banner-item start -->
-            <div class="col-md-4 col-sm-6 col-xs-12">
-                <div class="banner-item banner-2">
-                    <div class="banner-img">
-                        <a href="#"><img src="<?= Yii::$app->urlManager->baseUrl ?>/frontend/web/images/bg/bg2.png" alt=""></a>
+            <!-- up-comming-pro -->
+            <div class="col-md-8 col-sm-12 col-xs-12">
+                <div class="up-comming-pro gray-bg clearfix">
+                    <div class="up-comming-pro-img f-left">
+                        <a href="#">
+                            <img src="<?= Yii::$app->urlManager->baseUrl ?>/frontend/web/images/bg/bg5.jpg" alt="">
+                        </a>
                     </div>
-                    <h3 class="banner-title-2"><a href="#"></a></h3>
-                    <h3 class="pro-price">Ksh 3041.00</h3>
-                    <div class="banner-button">
-                        <a href="<?= yii\helpers\Url::to(['shop']) ?>">Shop now <i class="zmdi zmdi-long-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-            <!-- banner-item end -->
-            <!-- banner-item start -->
-            <div class="col-md-4 col-sm-6 col-xs-12">
-                <div class="banner-item banner-3">
-                    <div class="banner-img">
-                        <a href="#"><img src="<?= Yii::$app->urlManager->baseUrl ?>/frontend/web/images/bg/bg4.png" alt=""></a>
-                    </div>
-                    <div class="banner-info">
-                        <h3 class="banner-title-2"><a href="#">F.I.T 15</a></h3>
-                        <ul class="banner-featured-list">
-                            <li>
-                                <i class="zmdi zmdi-check"></i><span></span>
-                            </li>
-                            <li>
-                                <i class="zmdi zmdi-check"></i><span></span>
-                            </li>
-                            <li>
-                                <i class="zmdi zmdi-check"></i><span></span>
-                            </li>
-                            <li>
-                                <i class="zmdi zmdi-check"></i><span></span>
-                            </li>
-                            <li>
-                                <i class="zmdi zmdi-check"></i><span></span>
-                            </li>
-                        </ul>
-                        <div class="banner-button">
-                            <a href="<?= yii\helpers\Url::to(['shop']) ?>">Discover <i class="zmdi zmdi-long-arrow-right"></i></a>
-                        </div>
+                    <div class="up-comming-pro-info f-left">
+                        <h3><a href="#">Forever Bright Toothgel</a></h3>
+                        <p>
+                            Created for the entire family,
+                            this gentle, non-fluoride formula contains only the highest quality ingredients including aloe vera and bee propolis.
+                            Enjoy its natural mint flavour for a taste that will leave your mouth refreshed and your teeth clean.
+                            This toothgel is also suitable for vegetarians since it contains no animal by-products.
+                        </p>
+                        <p>Other products include Forever Multimaca and Vital5.</p>
+
                     </div>
                 </div>
             </div>
-            <!-- banner-item end -->
-            <!-- banner-item start -->
             <div class="col-md-4 hidden-sm col-xs-12">
-                <div class="banner-item banner-4">
+                <div class="banner-item banner-1">
+                    <div class="ribbon-price">
+                        <span>Ksh 881.00</span>
+                    </div>
                     <div class="banner-img">
-                        <a href="#"><img src="<?= Yii::$app->urlManager->baseUrl ?>/frontend/web/images/bg/bg3.png" alt=""></a>
+                        <a href="#"><img src="<?= Yii::$app->urlManager->baseUrl ?>/frontend/web/images/bg/bg7.png" alt=""></a>
                     </div>
-                    <h3 class="banner-title-2"><a href="#"></a></h3>
-                    <div class="banner-button">
-                        <a href="<?= yii\helpers\Url::to(['shop']) ?>">Shop now <i class="zmdi zmdi-long-arrow-right"></i></a>
-                    </div>
+
                 </div>
             </div>
-            <!-- banner-item end -->
         </div>
     </div>
 </div>
-<!-- BANNER-SECTION END -->
+<!-- UP COMMING PRODUCT SECTION END -->
 
 <!-- FEATURED PRODUCT SECTION START -->
 <div class="featured-product-section mb-40  ">
@@ -300,10 +275,39 @@ use backend\modules\products\models\Products; ?>
                     </div>
                     <div class="subcribe clearfix">
                         <form action="#">
-                            <input type="text" name="email" placeholder="Enter your email here..."/>
-                            <button class="submit-btn-2 btn-hover-2" type="submit">subcribe</button>
+                            <input id="email" type="text" name="email" placeholder="Enter your email here..."/>
+                            <button id="subscribe" class="submit-btn-2 btn-hover-2" type="submit">subcribe</button>
                         </form>
                     </div>
+                    <script type="text/javascript">
+                        $(document).ready(function () {
+                            $('#subscribe').click(function (event) {
+                                event.preventDefault();
+
+                                $.ajax(
+                                        {
+                                            url: 'site/addnews',
+                                            dataType: 'json',
+                                            method: 'GET',
+                                            data: {email: $('#email').val()},
+                                            success: function (data, textStatus, jqXHR) {
+
+                                                $('#error').text(data.email);
+                                            },
+                                            beforeSend: function (xhr) {
+
+                                            },
+                                            error: function (jqXHR, textStatus, errorThrown) {
+
+                                            }
+                                        });
+                            }
+                            );
+                        });
+                    </script>
+
+
+                    <div id="error" class="text-error" style="margin-left:40px;"></div>
                 </div>
             </div>
         </div>

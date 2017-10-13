@@ -89,6 +89,23 @@ class SiteController extends Controller {
         return $this->render('index', ['products' => $products, 'blog' => $blog]);
     }
 
+    public function actionAddnews($email) {
+        $model = new \backend\modules\blog\models\Newsletter();
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        if (!empty($email)) {
+            $model->email = $email;
+            if ($model->validate()) {
+                $model->save(false);
+                return ['email' => 'You have Subscribed  Successfully'];
+            } else {
+                return $model->errors;
+            }
+        } else {
+            return ['email' => 'Please enter your email'];
+        }
+        return true;
+    }
+
     public function actionAbout() {
         return $this->render('about');
     }

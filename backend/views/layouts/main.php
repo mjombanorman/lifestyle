@@ -7,6 +7,7 @@ use yii\widgets\Breadcrumbs;
 use backend\assets\DefaultAsset;
 use backend\assets\UpAsset;
 use common\models\User;
+use common\widgets\Alert;
 
 UpAsset::register($this);
 DefaultAsset::register($this);
@@ -24,66 +25,126 @@ $user = Yii::$app->user->identity;
     <head>
         <meta charset="<?= Yii::$app->charset ?>">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <script src="<?= Yii::$app->urlManager->baseUrl ?>/themes/p_theme/cdn-cgi/apps/head/vAzQ3pO_LVF9Y_-CSxLP87NslSA.js"></script>
         <?= Html::csrfMetaTags() ?>
         <title><?= 'healthylifestyle || ' . Html::encode($this->title) ?></title>
-        <script type="text/javascript">
-            //<![CDATA[
-            var _gaq = _gaq || []; _gaq.push(['_setAccount', 'UA-56895490-1']); _gaq.push(['_trackPageview']); (function() {var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); })(); //]]>
-        </script>
-        <script type="text/javascript">
-            //<![CDATA[
-            try{if (!window.CloudFlare) {var CloudFlare = [{verbose:0, p:0, byc:0, owlid:"cf", bag2:1, mirage2:0, oracle:0, paths:{cloudflare:"/cdn-cgi/nexp/dok3v=1613a3a185/"}, atok:"ff45b23316720f61c4d3b39fbde0d331", petok:"fe56b369de3c3e84070667767b24d117fa511157-1497792701-1800", zone:"revox.io", rocket:"0", apps:{"ga_key":{"ua":"UA-56895490-1", "ga_bs":"1"}}}]; !function(a, b){a = document.createElement("script"), b = document.getElementsByTagName("script")[0], a.async = !0, a.src = "/lifestyle/backend/web/ajax.cloudflare.com/cdn-cgi/nexp/dok3v%3d85b614c0f6/cloudflare.min.js", b.parentNode.insertBefore(a, b)}()}} catch (e){};
-//]]>
-        </script>
+
         <?php $this->head() ?>
         <link rel="shortcut icon" href="<?= Yii::getAlias('@web') . '/images/icons/favicon.png' ?>" type="image/x-icon" />
     </head>
-    <body class="">
+    <body class="fixed-header ">
         <?php $this->beginBody() ?>
 
-        <!-- Render Header -->
-        <?= $this->render('header'); ?>
-        <div class="page-container row-fluid">
+        <!-- Render Sidebar -->
+        <?= $this->render('sidebar'); ?>
+        <div class="page-container ">
 
-            <!-- Render Sidebar -->
-            <?= $this->render('sidebar'); ?>
+            <!-- Render Header -->
+            <?= $this->render('header'); ?>
 
-            <div class="page-content">
-                <div id="portlet-config" class="modal hide">
-                    <div class="modal-header">
-                        <button data-dismiss="modal" class="close" type="button"></button>
-                        <h3>Widget Settings</h3>
-                    </div>
-                    <div class="modal-body"> Widget settings form goes here </div>
-                </div>
-                <div class="clearfix"></div>
-                <div class="content">
-                    <div class="" style="display:inline">
-                        <div class="pull-right">
-                            <ul class="breadcrumb">
-                                <li>
-                                    <p><?= strtoupper(Yii::$app->controller->module->id) ?></p>
-                                </li>
-                                <li><a href="#" class="active">Dashboard</a>
-                                </li>
-                            </ul>
+            <div class="page-content-wrapper ">
+
+                <div class="content ">
+
+                    <div class="jumbotron" data-pages="parallax">
+                        <div class=" container-fluid   container-fixed-lg sm-p-l-0 sm-p-r-0">
+                            <div class="inner">
+
+                                <!--<ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                                    <li class="breadcrumb-item active">Blank template</li>
+                                </ol>-->
+                                <?php
+                                echo
+                                Breadcrumbs::widget([
+                                    'homeLink' => [
+                                        'label' => '<i class="fa fa-dashboard"></i> ' . Html::encode(Yii::t('yii', 'Home')),
+                                        'url' => Yii::$app->homeUrl,
+                                        'encode' => false,
+                                    ],
+                                    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                                ]);
+                                ?>
+
+
+
+                            </div>
                         </div>
-                        <div class="page-title"> <a href="<?= Yii::$app->request->referrer ?>"><i class="icon-custom-left"></i></a>
-                            <h3><?= ucfirst(Yii::$app->controller->module->id) ?> - <span class="semi-bold"><?= ucfirst($this->title) ?></span></h3>
-                        </div>
                     </div>
-                    <!--Start Page content-->
-                    <?= $content ?>
-                    <!--End Page content-->
+
+                    <div class=" container-fluid   container-fixed-lg">
+                        <?php echo Alert::widget() ?>
+                        <!--Start Page content-->
+                        <?= $content ?>
+                        <!--End Page content-->
+                    </div>
 
                 </div>
-            </div>
-            <div  class="footer copy-section">
-                <div class="pull-right">
-                    <p style="padding:10px 5px">&copy; 2017 MIMI E-commerce. All rights reserved | Powered By Wale Wabaya</a></p>
+
+                <div class=" container-fluid  container-fixed-lg footer">
+                    <div class="copyright sm-text-center">
+                        <p class="small no-margin pull-left sm-pull-reset">
+                            <span class="hint-text">Copyright &copy; <?= date('Y') ?> </span>
+                            <span class="font-montserrat">1221 Devplus Inc.</span>.
+                            <span class="hint-text">All rights reserved. </span>
+                            <span class="sm-block"><a href="#" class="m-l-10 m-r-10">Terms of use</a> <span class="muted">|</span> <a href="#" class="m-l-10">Privacy Policy</a></span>
+                        </p>
+                        <p class="small no-margin pull-right sm-pull-reset">
+                            Coffee <span class="hint-text">&amp; code</span>
+                        </p>
+                        <div class="clearfix"></div>
+                    </div>
                 </div>
+
             </div>
+
         </div>
+        <!--Render QuickView Right Sidebar-->
+        <?php // $this->render('quick_view') ?>
+
+        <!--Render Search-->
+        <?= $this->render('search') ?>
+
+        <!--Important Scripts-->
+        <script>
+            window.intercomSettings = {
+                app_id: "xt5z6ibr"
+            };
+        </script>
+        <script>
+            (function () {
+                var w = window;
+                var ic = w.Intercom;
+                if (typeof ic === "function") {
+                    ic('reattach_activator');
+                    ic('update', intercomSettings);
+                } else {
+                    var d = document;
+                    var i = function () {
+                        i.c(arguments)
+                    };
+                    i.q = [];
+                    i.c = function (args) {
+                        i.q.push(args)
+                    };
+                    w.Intercom = i;
+
+                    function l() {
+                        var s = d.createElement('script');
+                        s.type = 'text/javascript';
+                        s.async = true;
+                        s.src = 'https://widget.intercom.io/widget/xt5z6ibr';
+                        var x = d.getElementsByTagName('script')[0];
+                        x.parentNode.insertBefore(s, x);
+                    }
+                    if (w.attachEvent) {
+                        w.attachEvent('onload', l);
+                    } else {
+                        w.addEventListener('load', l, false);
+                    }
+                }
+            })()
+        </script>
 
         <?php $this->endBody() ?>
     </body>

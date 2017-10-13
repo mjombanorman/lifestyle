@@ -71,7 +71,7 @@ use backend\modules\products\models\Category;
 
 </div>
 <script>
-    $(document).ready(function () {
-        $('#mytextarea').wysihtml5();
-    });
+//    $(document).ready(function () {
+//        $('#mytextarea').wysihtml5();
+//    });
 </script>

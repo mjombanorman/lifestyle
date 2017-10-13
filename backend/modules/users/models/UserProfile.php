@@ -7,8 +7,8 @@ use Yii;
 /**
  * This is the model class for table "user_profile".
  *
- * @property integer $id
- * @property integer $user_id
+ * @property int $id
+ * @property int $user_id
  * @property string $first_name
  * @property string $middle_name
  * @property string $last_name
@@ -16,10 +16,10 @@ use Yii;
  * @property string $phone
  * @property string $phone2
  * @property string $country
- * @property integer $id_no
- * @property integer $passport_no
+ * @property int $id_no
+ * @property int $passport_no
  * @property string $dob
- * @property integer $address
+ * @property int $address
  * @property string $marital_status
  * @property string $created_at
  * @property string $updated_at

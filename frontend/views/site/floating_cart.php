@@ -110,6 +110,7 @@
                         success: function (data, textStatus, jqXHR) {
                             $('#load_cart').load("<?= Yii::$app->urlManager->baseUrl ?>/floatingcart");
                             $('#table_cart').load("<?= Yii::$app->urlManager->baseUrl ?>/tablecart");
+                            $('.cart-icon').trigger('mouseenter');
                         },
                         beforeSend: function (xhr) {
 

@@ -1,6 +1,15 @@
 <?php $url = Yii::$app->urlManager; ?>
-<li <?= Yii::$app->controller->module->id == 'users' ? 'open active' : '' ?> > <a href="javascript:;"> <i class="fa fa-users"></i> <span class="title">Users</span> <span class=" arrow"></span> </a>
+
+
+<li>
+    <a href="javascript:;"><span class="title">Users</span>
+        <span class=" arrow"></span></a>
+    <span class="icon-thumbnail"><i class="fa fa-users"></i></span>
     <ul class="sub-menu">
-        <li> <a href="<?= Yii::$app->urlManager->createUrl(['users/user/index']); ?>"> All Users </a> </li>
+        <li class="">
+            <a href="<?= Yii::$app->urlManager->createUrl(['users/user/index']); ?>"> All Users</a>
+            <span class="icon-thumbnail">u</span>
+        </li>
+
     </ul>
 </li>

@@ -8,132 +8,68 @@ $user = Yii::$app->user->identity;
 $url = Yii::$app->urlManager;
 ?>
 <?php
-$items = MenuHelper::getAssignedMenu(Yii::$app->user->id);
 //var_dump(json_encode($items));
 //die();
 ?>
 
 
-<div class="page-sidebar " id="main-menu">
 
-    <div class="page-sidebar-wrapper scrollbar-dynamic" id="main-menu-wrapper">
-        <div class="user-info-wrapper sm">
-            <div class="profile-wrapper sm">
-                <img src="<?php // $user->user_image ? Yii::$app->urlManager->baseUrl . '/' . $user->user_image : Yii::$app->urlManager->baseUrl . '/images/icons/user.png'                                                      ?>" alt="" data-src="" data-src-retina="" width="69" height="69"/>
-                <div class="availability-bubble online"></div>
+
+
+
+
+<nav class="page-sidebar" data-pages="sidebar">
+
+    <div class="sidebar-overlay-slide from-top" id="appMenu">
+        <div class="row">
+            <div class="col-xs-6 no-padding">
+                <a href="#" class="p-l-40"><img src="themes/p_theme/assets/img/demo/social_app.svg" alt="socail">
+                </a>
             </div>
-            <div class="user-info sm">
-                <div class="username"><?php //$user->first_name                                                     ?> <span class="semi-bold"> <?php // $user->last_name                                                    ?></span></div>
-                <div class="status">Logged in</div>
+            <div class="col-xs-6 no-padding">
+                <a href="#" class="p-l-10"><img src="themes/p_theme/assets/img/demo/email_app.svg" alt="socail">
+                </a>
             </div>
         </div>
+        <div class="row">
+            <div class="col-xs-6 m-t-20 no-padding">
+                <a href="#" class="p-l-40"><img src="themes/p_theme/assets/img/demo/calendar_app.svg" alt="socail">
+                </a>
+            </div>
+            <div class="col-xs-6 m-t-20 no-padding">
+                <a href="#" class="p-l-10"><img src="themes/p_theme/assets/img/demo/add_more.svg" alt="socail">
+                </a>
+            </div>
+        </div>
+    </div>
 
+    <div class="sidebar-header">
+        <img src="<?= Yii::$app->urlManager->baseUrl ?>/themes/p_theme/assets/img/logo_white.png" alt="logo" class="brand" data-src="<?= Yii::$app->urlManager->baseUrl ?>/themes/p_theme/assets/img/logo_white.png" data-src-retina="<?= Yii::$app->urlManager->baseUrl ?>/themes/p_theme/assets/img/logo_white.png" width="78" height="22">
+        <div class="sidebar-header-controls">
+            <button type="button" class="btn btn-xs sidebar-slide-toggle btn-link m-l-20 hidden-md-down" data-pages-toggle="#appMenu"><i class="fa fa-angle-down fs-16"></i>
+            </button>
+            <button type="button" class="btn btn-link hidden-md-down" data-toggle-pin="sidebar"><i class="fa fs-12"></i>
+            </button>
+        </div>
+    </div>
 
-        <p class="menu-title sm">BROWSE <span class="pull-right"><a href="javascript:;"><i class="material-icons">refresh</i></a></span></p>
+    <div class="sidebar-menu">
 
-        <ul>
-            <?php
-            echo $this->render('_menus/_dashboard');
-            ?>
-            <?php
-            echo $this->render('_menus/_inv');
-            ?>
-            <?php
-            echo $this->render('_menus/_orders');
-            ?>
-            <?php
-            echo $this->render('_menus/_blog');
-            ?>
-            <?php
-            echo $this->render('_menus/_users');
-            ?>
-            <?php
-            echo $this->render('_menus/_settings');
-            ?>
+        <ul class="menu-items">
+            <?php echo $this->render('_menus/_dashboard'); ?>
 
+            <?php echo $this->render('@app/modules/products/views/layouts/_menu'); ?>
 
+            <?php echo $this->render('_menus/_orders'); ?>
 
-            <li class="hidden-lg hidden-md hidden-xs" id="more-widgets"> <a href="javascript:;"> <i class="material-icons"></i></a>
-                <ul class="sub-menu">
-                    <li class="side-bar-widgets">
-                        <p class="menu-title sm">FOLDER <span class="pull-right"><a href="#" class="create-folder"><i class="material-icons">add</i></a></span></p>
-                        <ul class="folders">
-                            <li><a href="#">
-                                    <div class="status-icon green"></div>
-                                    My quick tasks </a> </li>
-                            <li><a href="#">
-                                    <div class="status-icon red"></div>
-                                    To do list </a> </li>
-                            <li><a href="#">
-                                    <div class="status-icon blue"></div>
-                                    Projects </a> </li>
-                            <li class="folder-input" style="display:none">
-                                <input type="text" placeholder="Name of folder" class="no-boarder folder-name" name="" id="folder-name">
-                            </li>
-                        </ul>
-                        <p class="menu-title">PROJECTS </p>
-                        <div class="status-widget">
-                            <div class="status-widget-wrapper">
-                                <div class="title">Freelancer<a href="#" class="remove-widget"><i class="material-icons">close</i></a></div>
-                                <p>Redesign home page</p>
-                            </div>
-                        </div>
-                        <div class="status-widget">
-                            <div class="status-widget-wrapper">
-                                <div class="title">envato<a href="#" class="remove-widget"><i class="material-icons">close</i></a></div>
-                                <p>Statistical report</p>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </li>
-        </ul>
+            <?php echo $this->render('@app/modules/blog/views/layouts/_menu'); ?>
 
-        <ul>
+            <?php echo $this->render('@app/modules/users/views/layouts/_menu'); ?>
+
+            <?php echo $this->render('@app/modules/settings/views/layouts/_menu'); ?>
 
         </ul>
-
-        <!-- <div class="side-bar-widgets">
-             <p class="menu-title sm">FOLDER <span class="pull-right"><a href="#" class="create-folder"> <i class="material-icons">add</i></a></span></p>
-             <ul class="folders">
-                 <li><a href="#">
-                         <div class="status-icon green"></div>
-                         My quick tasks </a> </li>
-                 <li><a href="#">
-                         <div class="status-icon red"></div>
-                         To do list </a> </li>
-                 <li><a href="#">
-                         <div class="status-icon blue"></div>
-                         Projects </a> </li>
-                 <li class="folder-input" style="display:none">
-                     <input type="text" placeholder="Name of folder" class="no-boarder folder-name" name="">
-                 </li>
-             </ul>
-             <p class="menu-title">PROJECTS </p>
-             <div class="status-widget">
-                 <div class="status-widget-wrapper">
-                     <div class="title">Freelancer<a href="#" class="remove-widget"><i class="material-icons">close</i></a></div>
-                     <p>Redesign home page</p>
-                 </div>
-             </div>
-             <div class="status-widget">
-                 <div class="status-widget-wrapper">
-                     <div class="title">envato<a href="#" class="remove-widget"><i class="material-icons">close</i></a></div>
-                     <p>Statistical report</p>
-                 </div>
-             </div>
-         </div>-->
         <div class="clearfix"></div>
-
     </div>
-</div>
 
-<a href="#" class="scrollup">Scroll</a>
-<div class="footer-widget">
-    <div class="progress transparent progress-small no-radius no-margin">
-        <div class="progress-bar progress-bar-success animate-progress-bar" data-percentage="79%" style="width: 79%;"></div>
-    </div>
-    <div class="pull-right">
-        <div class="details-status"> <span class="animate-number" data-value="86" data-animation-duration="560">86</span>% </div>
-        <a href="lockscreen.html"><i class="material-icons">power_settings_new</i></a></div>
-</div>
+</nav>

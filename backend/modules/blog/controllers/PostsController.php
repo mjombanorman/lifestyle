@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
+use backend\modules\blog\components\BlogModuleConstants;
 
 /**
  * PostsController implements the CRUD actions for Posts model.
@@ -27,6 +28,12 @@ class PostsController extends Controller {
                 ],
             ],
         ];
+    }
+
+    public function init() {
+        $this->MENU = BlogModuleConstants::MENU_BLOG;
+        $this->SUB_MENU = BlogModuleConstants::SUB_MENU_ALL;
+        parent::init();
     }
 
     /**

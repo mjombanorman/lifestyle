@@ -8,7 +8,7 @@ $(document).ready(function () {
 
 
     var showcart = function () {
-        $('#load_cart').load("/lifestyle/floatingcart");
+        $('#load_cart').load("site/floatingcart");
 
     }
 
@@ -18,13 +18,13 @@ $(document).ready(function () {
         event.preventDefault();
         $.ajax(
                 {
-                    url: '/lifestyle/cart',
+                    url: 'site/cart',
                     dataType: 'json',
                     method: 'GET',
                     data: {id: $(this).attr('data-id')},
                     success: function (data, textStatus, jqXHR) {
                         //console.log('Added to Cart');
-                        $('#load_cart').load("/lifestyle/floatingcart");
+                        $('#load_cart').load("site/floatingcart");
 
                     },
                     beforeSend: function (xhr) {
@@ -40,14 +40,14 @@ $(document).ready(function () {
         event.preventDefault();
         $.ajax(
                 {
-                    url: '/lifestyle/frontend/web/site/uncart',
+                    url: 'site/uncart',
                     dataType: 'json',
                     method: 'GET',
                     data: {id: $(this).attr('data-id')},
                     success: function (data, textStatus, jqXHR) {
                         //console.log('Added to Cart');
                         $('#load_cart').load("/lifestyle/frontend/web/site/floatingcart");
-
+                        $('.cart-icon').trigger('mouseenter');
                     },
                     beforeSend: function (xhr) {
 

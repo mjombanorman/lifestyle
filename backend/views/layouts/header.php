@@ -2,173 +2,161 @@
 $user = Yii::$app->user->identity;
 $url = Yii::$app->urlManager;
 ?>
+<?php // Yii::$app->urlManager->createUrl(['site/logout']);                      ?>
+<div class="header ">
 
-<div class="header navbar navbar-inverse ">
+    <a href="#" class="btn-link toggle-sidebar hidden-lg-up pg pg-menu" data-toggle="sidebar">
+    </a>
 
-    <div class="navbar-inner">
-        <div class="header-seperation">
-            <ul class="nav pull-left notifcation-center visible-xs visible-sm">
-                <li class="dropdown">
-                    <a href="#main-menu" data-webarch="toggle-left-side">
-                        <i class="material-icons">menu</i>
-                    </a>
-                </li>
-            </ul>
-
-            <a href="<?= yii\helpers\Url::to(['index']) ?>">
-                <!--<img src="/lifestyle/backend/web/images/icons/logo.png" class="logo" alt="" data-src="/lifestyle/backend/web/images/icons/logo.png" data-src-retina="" width="106" height="21"/>-->
-            </a>
-
-            <ul class="nav pull-right notifcation-center">
-                <li class="dropdown hidden-xs hidden-sm">
-                    <a href="index.html" class="dropdown-toggle active" data-toggle="">
-                        <i class="material-icons">home</i>
-                    </a>
-                </li>
-                <li class="dropdown hidden-xs hidden-sm">
-                    <a href="email.html" class="dropdown-toggle">
-                        <i class="material-icons">email</i><span class="badge bubble-only"></span>
-                    </a>
-                </li>
-                <li class="dropdown visible-xs visible-sm">
-                    <a href="#" data-webarch="toggle-right-side">
-                        <i class="material-icons">chat</i>
-                    </a>
-                </li>
-            </ul>
+    <div class="">
+        <div class="brand inline">
+            <img src="<?= Yii::$app->urlManager->baseUrl ?>/themes/p_theme/assets/img/logo.png" alt="logo" data-src="<?= Yii::$app->urlManager->baseUrl ?>/themes/p_theme/assets/img/logo.png" data-src-retina="<?= Yii::$app->urlManager->baseUrl ?>/themes/p_theme/assets/img/logo.png" width="78" height="22">
         </div>
 
-        <div class="header-quick-nav">
+        <ul class="hidden-md-down notification-list no-margin hidden-sm-down b-grey b-l b-r no-style p-l-30 p-r-20">
+            <li class="p-r-10 inline">
+                <div class="dropdown">
+                    <a href="javascript:;" id="notification-center" class="header-icon pg pg-world" data-toggle="dropdown">
+                        <span class="bubble"></span>
+                    </a>
 
-            <div class="pull-left">
-                <ul class="nav quick-section">
-                    <li class="quicklinks"> <a href="#" class="" id="layout-condensed-toggle">
-                            <i class="material-icons">menu</i>
-                        </a>
-                    </li>
-                </ul>
-                <ul class="nav quick-section">
-                    <li class="quicklinks  m-r-10"> <a href="#" class="">
-                            <i class="material-icons">refresh</i>
-                        </a>
-                    </li>
-                    <li class="quicklinks"> <a href="#" class="">
-                            <i class="material-icons">apps</i>
-                        </a>
-                    </li>
-                    <li class="quicklinks"> <span class="h-seperate"></span></li>
-                    <li class="quicklinks"> <a href="#" class="" id="my-task-list" data-placement="bottom" data-content='' data-toggle="dropdown" data-original-title="Notifications">
-                            <i class="material-icons">notifications_none</i>
-                            <span class="badge badge-important bubble-only"></span>
-                        </a>
-                    </li>
-                    <li class="m-r-10 input-prepend inside search-form no-boarder">
-                        <span class="add-on"> <i class="material-icons">search</i></span>
-                        <input name="" type="text" class="no-boarder " placeholder="Search Dashboard" style="width:250px;">
-                    </li>
-                </ul>
-            </div>
-            <div id="notification-list" style="display:none">
-                <div style="width:300px">
-                    <div class="notification-messages info">
-                        <div class="user-profile">
-                            <img src="assets/img/profiles/d.jpg" alt="" data-src="assets/img/profiles/d.jpg" data-src-retina="assets/img/profiles/d2x.jpg" width="35" height="35">
-                        </div>
-                        <div class="message-wrapper">
-                            <div class="heading">
-                                David Nester - Commented on your wall
-                            </div>
-                            <div class="description">
-                                Meeting postponed to tomorrow
-                            </div>
-                            <div class="date pull-left">
-                                A min ago
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="notification-messages danger">
-                        <div class="iconholder">
-                            <i class="icon-warning-sign"></i>
-                        </div>
-                        <div class="message-wrapper">
-                            <div class="heading">
-                                Server load limited
-                            </div>
-                            <div class="description">
-                                Database server has reached its daily capicity
-                            </div>
-                            <div class="date pull-left">
-                                2 mins ago
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="notification-messages success">
-                        <div class="user-profile">
-                            <img src="assets/img/profiles/h.jpg" alt="" data-src="assets/img/profiles/h.jpg" data-src-retina="assets/img/profiles/h2x.jpg" width="35" height="35">
-                        </div>
-                        <div class="message-wrapper">
-                            <div class="heading">
-                                You haveve got 150 messages
-                            </div>
-                            <div class="description">
-                                150 newly unread messages in your inbox
-                            </div>
-                            <div class="date pull-left">
-                                An hour ago
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-            </div>
+                    <div class="dropdown-menu notification-toggle" role="menu" aria-labelledby="notification-center">
 
+                        <div class="notification-panel">
 
-            <div class="pull-right">
-                <div class="chat-toggler sm">
-                    <div class="profile-pic">
-                        <img src="<?php // $user->user_image ? Yii::$app->urlManager->baseUrl . '/' . $user->user_image : Yii::$app->urlManager->baseUrl . '/images/icons/user.png'  ?>" alt="" data-src="" data-src-retina="" width="35" height="35"/>
-                        <div class="availability-bubble online"></div>
-                    </div>
-                </div>
-                <ul class="nav quick-section ">
-                    <li class="quicklinks">
-                        <a data-toggle="dropdown" class="dropdown-toggle  pull-right " href="#" id="user-options">
-                            <i class="material-icons">tune</i>
-                        </a>
-                        <ul class="dropdown-menu  pull-right" role="menu" aria-labelledby="user-options">
-                            <li>
-                                <a href="user-profile.ml"> My Account</a>
-                            </li>
-                            <li>
-                                <a href="#">My Calendar</a>
-                            </li>
+                            <div class="notification-body scrollable">
 
-                            <li class="divider"></li>
-                            <li>
-                                <a href="<?= Yii::$app->urlManager->createUrl(['site/logout']); ?>"><i class="material-icons">power_settings_new</i>&nbsp;&nbsp;Log Out</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="quicklinks"> <span class="h-seperate"></span></li>
-                    <li class="quicklinks">
-                        <a href="#" class="chat-menu-toggle" data-webarch="toggle-right-side"><i class="material-icons">chat</i><span class="badge badge-important hide">1</span>
-                        </a>
-                        <div class="simple-chat-popup chat-menu-toggle hide">
-                            <div class="simple-chat-popup-arrow"></div><div class="simple-chat-popup-inner">
-                                <div style="width:100px">
-                                    <div class="semi-bold">How you doing</div>
-                                    <div class="message"><?php // $user->first_name . ' ' . $user->last_name   ?> </div>
+                                <div class="notification-item unread clearfix">
+
+                                    <div class="heading open">
+                                        <a href="#" class="text-complete pull-left">
+                                            <i class="pg-map fs-16 m-r-10"></i>
+                                            <span class="bold">Carrot Design</span>
+                                            <span class="fs-12 m-l-10"><?= Yii::$app->user->isGuest ? 'Guest' : Yii::$app->user->identity->username ?></span>
+                                        </a>
+                                        <div class="pull-right">
+                                            <div class="thumbnail-wrapper d16 circular inline m-t-15 m-r-10 toggle-more-details">
+                                                <div><i class="fa fa-angle-left"></i>
+                                                </div>
+                                            </div>
+                                            <span class=" time">few sec ago</span>
+                                        </div>
+                                        <div class="more-details">
+                                            <div class="more-details-inner">
+                                                <h5 class="semi-bold fs-16">“Apple’s Motivation - Innovation <br>
+                                                    distinguishes between <br>
+                                                    A leader and a follower.”</h5>
+                                                <p class="small hint-text">
+                                                    Commented on john Smiths wall.
+                                                    <br> via pages framework.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="option" data-toggle="tooltip" data-placement="left" title="mark as read">
+                                        <a href="#" class="mark"></a>
+                                    </div>
+
                                 </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
 
+                                <div class="notification-item  clearfix">
+                                    <div class="heading">
+                                        <a href="#" class="text-danger pull-left">
+                                            <i class="fa fa-exclamation-triangle m-r-10"></i>
+                                            <span class="bold">98% Server Load</span>
+                                            <span class="fs-12 m-l-10">Take Action</span>
+                                        </a>
+                                        <span class="pull-right time">2 mins ago</span>
+                                    </div>
+
+                                    <div class="option">
+                                        <a href="#" class="mark"></a>
+                                    </div>
+
+                                </div>
+
+                                <div class="notification-item  clearfix">
+                                    <div class="heading">
+                                        <a href="#" class="text-warning-dark pull-left">
+                                            <i class="fa fa-exclamation-triangle m-r-10"></i>
+                                            <span class="bold">Warning Notification</span>
+                                            <span class="fs-12 m-l-10">Buy Now</span>
+                                        </a>
+                                        <span class="pull-right time">yesterday</span>
+                                    </div>
+
+                                    <div class="option">
+                                        <a href="#" class="mark"></a>
+                                    </div>
+
+                                </div>
+
+                                <div class="notification-item unread clearfix">
+                                    <div class="heading">
+                                        <div class="thumbnail-wrapper d24 circular b-white m-r-5 b-a b-white m-t-10 m-r-10">
+                                            <img width="30" height="30" data-src-retina="assets/img/profiles/1x.jpg" data-src="assets/img/profiles/1.jpg" alt="" src="assets/img/profiles/1.jpg">
+                                        </div>
+                                        <a href="#" class="text-complete pull-left">
+                                            <span class="bold">Revox Design Labs</span>
+                                            <span class="fs-12 m-l-10">Owners</span>
+                                        </a>
+                                        <span class="pull-right time">11:00pm</span>
+                                    </div>
+
+                                    <div class="option" data-toggle="tooltip" data-placement="left" title="mark as read">
+                                        <a href="#" class="mark"></a>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="notification-footer text-center">
+                                <a href="#" class="">Read all notifications</a>
+                                <a data-toggle="refresh" class="portlet-refresh text-black pull-right" href="#">
+                                    <i class="pg-refresh_new"></i>
+                                </a>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </li>
+            <li class="p-r-10 inline">
+                <a href="#" class="header-icon pg pg-link"></a>
+            </li>
+            <li class="p-r-10 inline">
+                <a href="#" class="header-icon pg pg-thumbs"></a>
+            </li>
+        </ul>
+
+        <a href="#" class="search-link hidden-md-down" data-toggle="search"><i class="pg-search"></i>Type anywhere to <span class="bold">search</span></a>
+    </div>
+    <div class="d-flex align-items-center">
+
+        <div class="pull-left p-r-10 fs-14 font-heading hidden-md-down">
+            <span class="semi-bold"><?= Yii::$app->MyProfile->name->full_name ?></span> <span class="text-master"></span>
+        </div>
+        <div class="dropdown pull-right hidden-md-down">
+            <button class="profile-dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="thumbnail-wrapper d32 circular inline">
+                    <img src="<?= Yii::$app->MyProfile->getProfileImage() ?>" alt="" data-src="<?= Yii::$app->MyProfile->getProfileImage() ?>" data-src-retina="<?= Yii::$app->MyProfile->getProfileImage() ?>" width="32" height="32">
+                </span>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right profile-dropdown" role="menu">
+                <a href="#" class="dropdown-item"><i class="pg-settings_small"></i> Settings</a>
+                <a href="<?= $url->createUrl(['/site/profile']) ?>" class="dropdown-item"><i class="pg-outdent"></i> My Profile</a>
+<!--                <a href="#" class="dropdown-item"><i class="pg-signals"></i> Help</a>-->
+                <a data-method ="post" href="<?= $url->createUrl(['/site/logout']) ?>" class="clearfix bg-master-lighter dropdown-item">
+                    <span class="">Logout</span>
+                    <span class="pull-right"><i class="pg-power"></i></span>
+                </a>
+            </div>
         </div>
 
+        <a href="#" class="header-icon pg pg-alt_menu btn-link m-l-10 sm-no-margin d-inline-block" data-toggle="quickview" data-toggle-element="#quickview"></a>
     </div>
-
 </div>

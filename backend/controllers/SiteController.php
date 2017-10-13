@@ -44,6 +44,17 @@ class SiteController extends Controller {
         ];
     }
 
+    public function beforeAction($action) {
+        if (parent::beforeAction($action)) {
+            // change layout for error action
+            if ($action->id == 'error')
+                $this->layout = 'error';
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     /**
      * @inheritdoc
      */
@@ -112,8 +123,9 @@ class SiteController extends Controller {
         return $this->goHome();
     }
 
-    public function actionTest() {
-        return $this->render('test');
+    public function actionError() {
+        $this->layout = 'error';
+        return $this->render('error');
     }
 
     public function actionDest() {

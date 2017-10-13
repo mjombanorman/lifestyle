@@ -26,7 +26,7 @@ use backend\assets\BootAsset;
             </div>
         </td>
         <td class=" v-align-middle">
-            <?= $model->author->first_name ?>
+            <?= $model->author->username ?>
         </td>
         <td class=" tablefull v-align-middle">
             <span class="muted"><a href="<?= \yii\helpers\Url::to(['view', 'id' => $model->post_id]) ?>"><?= $model->post_title ?></a></span>

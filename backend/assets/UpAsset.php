@@ -20,8 +20,8 @@ class UpAsset extends AssetBundle {
     public $css = [
     ];
     public $js = [
-        'tinymce/js/tinymce/tinymce.min.js',
-        'assets/plugins/jquery/jquery-1.11.3.min.js',
+        //    'tinymce/js/tinymce/tinymce.min.js',
+        'themes/p_theme/assets/plugins/jquery/jquery-1.11.1.min.js',
     ];
     public $depends = [
             // 'yii\web\YiiAsset',

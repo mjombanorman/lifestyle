@@ -10,6 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use \yii\web\Response;
 use yii\helpers\Html;
+use backend\modules\settings\components\SettingsModuleConstants;
 
 /**
  * CurrencyController implements the CRUD actions for SettingsCurrency model.
@@ -29,6 +30,13 @@ class CurrencyController extends Controller {
                 ],
             ],
         ];
+    }
+
+    public function init() {
+        $this->MENU = SettingsModuleConstants::MENU_SETTINGS;
+        $this->SUB_MENU = SettingsModuleConstants::SUB_MENU_CONFIG;
+        $this->SUB_SUB_MENU = SettingsModuleConstants::SUB_SUB_MENU_CURRENCY;
+        parent::init();
     }
 
     /**

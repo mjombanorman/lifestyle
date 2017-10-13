@@ -53,4 +53,12 @@ class Category extends \yii\db\ActiveRecord {
         return $this->hasOne(User::classname(), ['id' => 'created_by']);
     }
 
+    public function beforeSave($insert) {
+        if (!parent::beforeSave($insert)) {
+            return false;
+        }
+        $this->created_by = Yii::$app->user->id;
+        return true;
+    }
+
 }
