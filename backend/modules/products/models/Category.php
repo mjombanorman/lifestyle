@@ -4,6 +4,7 @@ namespace backend\modules\products\models;
 
 use Yii;
 use backend\modules\users\models\User;
+use backend\modules\products\models\Products;
 
 /**
  * This is the model class for table "category".
@@ -59,6 +60,12 @@ class Category extends \yii\db\ActiveRecord {
         }
         $this->created_by = Yii::$app->user->id;
         return true;
+    }
+
+    public function getNumberOfProducts($category_id = null) {
+        $category_id = $category_id ? $category_id : $this->id;
+        $result = Products::find()->where(['category_id' => $category_id])->count();
+        return $result;
     }
 
 }

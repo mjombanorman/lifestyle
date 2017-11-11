@@ -31,7 +31,9 @@
         "johnitvn/yii2-ajaxcrud": "*",
         "2amigos/yii2-tinymce-widget": "~1.1",
         "2amigos/yii2-ckeditor-widget": "^1.0@dev",
-        "borales/yii2-phone-input": "*"
+        "borales/yii2-phone-input": "*",
+        "froala/yii2-froala-editor": "dev-master",
+        "2amigos/yii2-usuario": "~1.0"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

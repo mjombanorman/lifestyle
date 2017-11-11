@@ -43,7 +43,23 @@ class CategoryController extends Controller {
         $searchModel = new CategorySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $dataProvider->pagination->pageSize = 10;
-
+        $dataProvider->setSort([
+            'attributes' => [
+//                'id' => [
+//                    'asc' => ['id' => SORT_ASC],
+//                    'desc' => ['id' => SORT_DESC],
+//                    'default' => SORT_DESC
+//                ],
+//                'created_at' => [
+//                    'asc' => ['created_at' => SORT_ASC],
+//                    'desc' => ['created_at' => SORT_DESC],
+//                    'default' => SORT_ASC,
+//                ],
+            ],
+            'defaultOrder' => [
+                'id' => SORT_DESC
+            ]
+        ]);
         return $this->render('index', [
                     'searchModel' => $searchModel,
                     'dataProvider' => $dataProvider,

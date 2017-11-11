@@ -8,9 +8,11 @@ use backend\assets\DefaultAsset;
 use backend\assets\UpAsset;
 use common\models\User;
 use common\widgets\Alert;
+use backend\assets\BootAsset;
 
 UpAsset::register($this);
 DefaultAsset::register($this);
+BootAsset::register($this);
 
 $user = Yii::$app->user->identity;
 ?>

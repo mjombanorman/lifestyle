@@ -8,8 +8,8 @@ use yii\widgets\Pjax;
 use kartik\select2\Select2;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
-use kartik\grid\GridView;
 use backend\assets\BootAsset;
+use kartik\grid\GridView;
 
 //BootAsset::register($this);
 
@@ -22,9 +22,9 @@ $this->params['breadcrumbs'][] = ['label' => 'Inventory', 'url' => ['/products/p
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="container-fluiid container-fixed-lg">
+    <div class="row">
+        <div class="col-lg-12">
 
-    <div class="col-lg-12">
-        <div class="row">
 
             <?php Pjax::begin(); ?>
             <?php
@@ -105,8 +105,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     'template' => '{view} {update} {delete}',
                     'buttons' => [
                         'view' => function ($url, $model, $key) {
-                            return Html::a('', ['items/view', 'id' => $model->id], [
-                                        'class' => 'glyphicon glyphicon-search',
+                            return Html::a('', ['products/view', 'id' => $model->id], [
+                                        'class' => 'pg-search text-success',
                                         'value' => Url::to(Yii::$app->urlManager->createUrl(['/products/products/view',
                                                     'id' => $model->id])),
                             ]);
@@ -114,31 +114,32 @@ $this->params['breadcrumbs'][] = $this->title;
                         'update' => function($url, $model, $key) {
                             return Html::a('', [NULL], [
                                         'title' => 'Update Product',
-                                        'class' => 'showModalButton glyphicon glyphicon-edit',
+                                        'class' => 'showModalButton pg-ui text-warning',
                                         'value' => Url::to(Yii::$app->urlManager->createUrl(['/products/products/update',
                                                     'id' => $model->id])),
                             ]);
-                        }, /*
-                      'delete' => function($url, $model, $key) {
-                      return Html::a('', ['items/delete', 'id' => $model->id], [
-                      'class' => 'glyphicon glyphicon-remove',
-                      'value' => Url::to(Yii::$app->urlManager->createUrl(['/items/items/delete',
-                      'id' => $model->id])),
-                      'data-pjax' => '1',
-                      'data' => [
-                      'method' => 'post',
-                      'confirm' => Yii::t('app', 'Are you sure you want to delete'),
-                      ],
-                      ]);
-                      }, */
+                        },
+                        'delete' => function($url, $model, $key) {
+                            return Html::a('', ['items/delete', 'id' => $model->id], [
+                                        'class' => 'pg-eraser text-danger',
+                                        'value' => Url::to(Yii::$app->urlManager->createUrl(['/items/items/delete',
+                                                    'id' => $model->id])),
+                                        'data-pjax' => '1',
+                                        'data' => [
+                                            'method' => 'post',
+                                            'confirm' => Yii::t('app', 'Are you sure you want to delete'),
+                                        ],
+                            ]);
+                        },
                     ],
                     'headerOptions' => ['class' => 'kartik-sheet-style'],
                 ],
             ];
             echo GridView::widget([
                 'dataProvider' => $dataProvider,
-                'filterModel' => $searchModel,
-                'filterUrl' => Url::to(['index']),
+                //'filterModel' => $searchModel,
+                //'filterPosition' => 'header',
+                // 'filterUrl' => Url::to(['index']),
                 'columns' => $gridColumns,
                 'containerOptions' => ['style' => 'overflow: auto'], // only set when $responsive = false
                 'toolbar' => [
@@ -150,16 +151,16 @@ $this->params['breadcrumbs'][] = $this->title;
                     '{toggleData}'
                 ],
                 'pjax' => false,
-                'bordered' => true,
+                'bordered' => false,
                 'striped' => true,
                 'condensed' => true,
                 'responsive' => true,
                 'hover' => true,
-                'showPageSummary' => true,
+                'showPageSummary' => false,
                 'panel' => [
                     'type' => GridView::TYPE_SUCCESS,
                     'heading' => 'All Products',
-                    'showFooter' => true,
+                    'showFooter' => false,
                 ],
             ]);
             ?>
@@ -173,7 +174,7 @@ yii\bootstrap\Modal::begin([
     'header' => '<span id="modalHeaderTitle"></span>',
     'headerOptions' => ['id' => 'modalHeader'],
     'id' => 'modal',
-    'size' => 'modal-md',
+    'size' => 'modal-lg',
     'options' => [
         'class' => 'fade fill-in disable-scroll',
         'tabindex' => '-1',
@@ -189,3 +190,22 @@ yii\bootstrap\Modal::end();
 ?>
 
 
+<?php
+//yii\bootstrap\Modal::begin([
+//    'header' => '<span id="modalHeaderTitle"></span>',
+//    'headerOptions' => ['id' => 'modalHeader'],
+//    'id' => 'modal',
+//    'size' => 'modal-lg',
+//    'options' => [
+//        'class' => 'fade fill-in disable-scroll',
+//        'tabindex' => '-1',
+//        'role' => 'dialog',
+//        'aria-hidden' => 'true',
+//    ],
+////keeps from closing modal with esc key or by clicking out of the modal.
+//// user must click cancel or X to close
+//    'clientOptions' => ['backdrop' => 'static', 'keyboard' => FALSE]
+//]);
+//echo "<div id='modalContent'></div>";
+//yii\bootstrap\Modal::end();
+?>

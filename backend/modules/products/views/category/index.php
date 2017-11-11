@@ -18,13 +18,14 @@ $this->title = 'Categories';
 $this->params['breadcrumbs'][] = ['label' => 'Inventory', 'url' => ['/products/categories/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="col-lg-12">
-    <div class="row">
+<div class="row">
+    <div class="col-lg-12">
+
 
         <?php Pjax::begin(); ?>
         <?php
         $gridColumns = [
-                ['class' => 'kartik\grid\SerialColumn'],
+//                ['class' => 'kartik\grid\SerialColumn'],
                 [
                 'attribute' => 'name',
                 'format' => 'raw',
@@ -52,6 +53,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filter' => false,
             ],
                 [
+                'attribute' => 'category_id',
+                'format' => 'raw',
+                'label' => 'Total Items',
+                'value' => function($data) {
+                    return $data->getNumberOfProducts();
+                },
+                'filter' => false,
+            ],
+                [
                 'attribute' => 'created_by',
                 'format' => 'raw',
                 'value' => function($data) {
@@ -71,11 +81,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => 'kartik\grid\ActionColumn',
                 // 'dropdown' => true,
                 //'vAlign' => 'middle',
-                'template' => '{view} {update}',
+                'template' => ' {update}',
                 'buttons' => [
                     'view' => function ($url, $model, $key) {
                         return Html::a('', ['main-category/view', 'id' => $model->id], [
-                                    'class' => 'glyphicon glyphicon-search',
+                                    'class' => 'glyphicon pg-search text-success',
                                     'value' => Url::to(Yii::$app->urlManager->createUrl(['/products/category/view',
                                                 'id' => $model->id])),
                         ]);
@@ -83,23 +93,23 @@ $this->params['breadcrumbs'][] = $this->title;
                     'update' => function($url, $model, $key) {
                         return Html::a('', [NULL], [
                                     'title' => 'Update Category',
-                                    'class' => 'showModalButton glyphicon glyphicon-edit',
+                                    'class' => 'showModalButton pg-ui text-warning',
                                     'value' => Url::to(Yii::$app->urlManager->createUrl(['/products/category/update',
                                                 'id' => $model->id])),
                         ]);
                     },
-                /*   'delete' => function($url, $model, $key) {
-                  return Html::a('', ['main-category/delete', 'id' => $model->id], [
-                  'class' => 'glyphicon glyphicon-remove',
-                  'value' => Url::to(Yii::$app->urlManager->createUrl(['/items/main-category/delete',
-                  'id' => $model->id])),
-                  'data-pjax' => '1',
-                  'data' => [
-                  'method' => 'post',
-                  'confirm' => Yii::t('app', 'Are you sure you want to delete'),
-                  ],
-                  ]);
-                  }, */
+                    'delete' => function($url, $model, $key) {
+                        return Html::a('', ['main-category/delete', 'id' => $model->id], [
+                                    'class' => 'pg-eraser text-danger',
+                                    'value' => Url::to(Yii::$app->urlManager->createUrl(['/items/main-category/delete',
+                                                'id' => $model->id])),
+                                    'data-pjax' => '1',
+                                    'data' => [
+                                        'method' => 'post',
+                                        'confirm' => Yii::t('app', 'Are you sure you want to delete'),
+                                    ],
+                        ]);
+                    },
                 ],
                 'headerOptions' => ['class' => 'kartik-sheet-style'],
             ],
@@ -121,14 +131,14 @@ $this->params['breadcrumbs'][] = $this->title;
             'pjax' => false,
             'bordered' => true,
             'striped' => true,
-            'condensed' => false,
+            'condensed' => true,
             'responsive' => true,
             'hover' => true,
-            'showPageSummary' => true,
+            'showPageSummary' => false,
             'panel' => [
                 'type' => GridView::TYPE_DEFAULT,
                 'heading' => 'Product Categories',
-                'showFooter' => true,
+                'showFooter' => false,
             ],
         ]);
         ?>
@@ -142,17 +152,37 @@ yii\bootstrap\Modal::begin([
     'header' => '<span id="modalHeaderTitle"></span>',
     'headerOptions' => ['id' => 'modalHeader'],
     'id' => 'modal',
-    'size' => 'modal-md',
+    'size' => 'modal-lg',
     'options' => [
-        'class' => 'fade slide-up disable-scroll',
+        'class' => 'fade fill-in disable-scroll',
         'tabindex' => '-1',
         'role' => 'dialog',
         'aria-hidden' => 'true',
     ],
-    //keeps from closing modal with esc key or by clicking out of the modal.
-    // user must click cancel or X to close
+//keeps from closing modal with esc key or by clicking out of the modal.
+// user must click cancel or X to close
     'clientOptions' => ['backdrop' => 'static', 'keyboard' => FALSE]
 ]);
 echo "<div id='modalContent'></div>";
 yii\bootstrap\Modal::end();
+?>
+
+<?php
+//yii\bootstrap\Modal::begin([
+//    'header' => '<span id="modalHeaderTitle"></span>',
+//    'headerOptions' => ['id' => 'modalHeader'],
+//    'id' => 'modal',
+//    'size' => 'modal-md',
+//    'options' => [
+//        'class' => 'fade slide-up disable-scroll',
+//        'tabindex' => '-1',
+//        'role' => 'dialog',
+//        'aria-hidden' => 'true',
+//    ],
+//    //keeps from closing modal with esc key or by clicking out of the modal.
+//    // user must click cancel or X to close
+//    'clientOptions' => ['backdrop' => 'static', 'keyboard' => FALSE]
+//]);
+//echo "<div id='modalContent'></div>";
+//yii\bootstrap\Modal::end();
 ?>

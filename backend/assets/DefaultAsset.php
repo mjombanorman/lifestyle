@@ -68,8 +68,8 @@ class DefaultAsset extends AssetBundle {
         'js/modal_popup.js',
     ];
     public $depends = [
-            //'yii\web\YiiAsset',
-            // 'yii\bootstrap\BootstrapAsset',
+        //'yii\web\YiiAsset',
+        'yii\bootstrap\BootstrapAsset',
     ];
 
 }

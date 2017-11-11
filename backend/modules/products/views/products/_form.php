@@ -6,6 +6,7 @@ use kartik\select2\Select2;
 use yii\helpers\ArrayHelper;
 use kartik\file\FileInput;
 use backend\modules\products\models\Category;
+use froala\froalaeditor\FroalaEditorWidget;
 
 /* @var $this yii\web\View */
 /* @var $model backend\modules\products\models\Products */
@@ -38,12 +39,29 @@ use backend\modules\products\models\Category;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'description')->textarea(['rows' => 6, 'id' => 'mytextarea']) ?>
+
+    <?php
+    echo FroalaEditorWidget::widget([
+        'model' => $model,
+        'attribute' => 'description',
+        'options' => [
+            // html attributes
+            'id' => 'content',
+            'rows' => 6,
+        ],
+        'clientOptions' => [
+            'toolbarInline' => false,
+            'theme' => 'royal', //optional: dark, red, gray, royal
+            'language' => 'en_us' // optional: ar, bs, cs, da, de, en_ca, en_gb, en_us ...
+        ]
+    ]);
+    ?>
+    <?php // $form->field($model, 'description')->textarea(['rows' => 6, 'id' => 'mytextarea']) ?>
 
     <?= $form->field($model, 'price')->textInput() ?>
 
 
-    <?php // $form->field($model, 'prod_img')->textInput(['maxlength' => true])  ?>
+    <?php // $form->field($model, 'prod_img')->textInput(['maxlength' => true])   ?>
 
 
     <?=
