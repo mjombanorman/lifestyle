@@ -191,7 +191,7 @@ class ProductsController extends Controller {
             Yii::$app->session->setFlash('success', 'Product added successfully');
             return $this->redirect(['index']);
         } else {
-            return $this->renderAjax('_form', ['model' => $model]);
+            return $this->render('create', ['model' => $model]);
         }
     }
 
@@ -228,7 +228,7 @@ class ProductsController extends Controller {
             Yii::$app->session->setFlash('success', 'Product added successfully');
             return $this->redirect(['index']);
         } else {
-            return $this->renderAjax('_form', ['model' => $model]);
+            return $this->render('update', ['model' => $model]);
         }
     }
 

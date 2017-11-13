@@ -1,4 +1,11 @@
+<?php
 
+use yii\helpers\Url;
+
+$this->title = 'View Cart';
+$this->params['breadcrumbs'][] = ['label' => 'Shop', 'url' => ['site/shop']];
+$this->params['breadcrumbs'][] = $this->title;
+?>
 <!-- SHOP SECTION START -->
 <div class="shop-section mb-80">
     <div class="container">
@@ -6,13 +13,13 @@
             <div class="col-md-2 col-sm-12">
                 <ul class="cart-tab">
                     <li>
-                        <a class="active" href="<?= Yii::$app->urlManager->createUrl(['site/viewcart']) ?>" data-toggle="tab">
+                        <a class="active" href="<?= Yii::$app->urlManager->createUrl(['site/viewcart']) ?>" >
                             <span>01</span>
                             Shopping cart
                         </a>
                     </li>
                     <li>
-                        <a href="<?= Yii::$app->urlManager->createUrl(['site/checkout']) ?>" data-toggle="tab">
+                        <a href="<?= Yii::$app->urlManager->createUrl(['site/check-out']) ?>" data-toggle="tab">
                             <span>02</span>
                             Checkout
                         </a>

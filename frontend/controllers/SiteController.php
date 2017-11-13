@@ -20,6 +20,7 @@ use yii\widgets\ActiveForm;
 use yii\data\Pagination;
 use backend\modules\products\models\Category;
 use backend\modules\products\models\Products;
+use Da\User\Model\Profile;
 
 /**
  * Site controller
@@ -33,15 +34,15 @@ class SiteController extends Controller {
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout', 'signup'],
+                'only' => ['logout', 'signup', 'send', 'checkout'],
                 'rules' => [
                         [
-                        'actions' => ['signup'],
+                        'actions' => ['signup', 'send'],
                         'allow' => true,
                         'roles' => ['?'],
                     ],
                         [
-                        'actions' => ['logout'],
+                        'actions' => ['logout', 'checkout'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -74,6 +75,18 @@ class SiteController extends Controller {
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
         ];
+    }
+
+    public function actionSend() {
+        Yii::$app->mailer->compose()
+                ->setFrom('jwisconsin@gmail.com')
+                ->setTo('okorecollins2010@gmail.com')
+                ->setSubject('Trial Email')
+                ->setTextBody('THe OG strikes again')
+                ->setHtmlBody('<b>My hot Html body</b>')
+                ->send();
+        Yii::$app->session->setFlash('success', 'Already Sent...');
+        return true;
     }
 
     /**
@@ -124,8 +137,8 @@ class SiteController extends Controller {
         $pagination = new pagination(['totalCount' => $count]);
         $pagination->pageSize = 9;
         $model = $query->offset($pagination->offset)->limit($pagination->limit)->all();
-        //var_dump($pagination);
-        // die();
+//var_dump($pagination);
+// die();
         return $this->render('shop', [
                     'model' => $model,
                     'allCategories' => $allCategories,
@@ -141,7 +154,7 @@ class SiteController extends Controller {
         return $this->render('view', ['allCategories' => $allCategories, 'model' => $model, 'related' => $related]);
     }
 
-    //Add to cart
+//Add to cart
     public function actionCart($id, $quantity = null) {
         $session = Yii::$app->session;
         if (!$session->isActive) {
@@ -155,7 +168,7 @@ class SiteController extends Controller {
         } else {
             return false;
         }
-        // return $this->redirect(Yii::$app->request->referrer);
+// return $this->redirect(Yii::$app->request->referrer);
     }
 
     public function actionFloatingcart() {
@@ -169,7 +182,7 @@ class SiteController extends Controller {
                 $list[] = $result;
             }
         }
-        // Yii::$app->response->format = Response::FORMAT_JSON;
+// Yii::$app->response->format = Response::FORMAT_JSON;
         return $this->renderAjax('floating_cart', ['list' => $list]);
     }
 
@@ -184,7 +197,7 @@ class SiteController extends Controller {
         return false;
     }
 
-    //Remove from cart
+//Remove from cart
     public function actionUncart($id) {
         $session = Yii::$app->session;
         if (!$session->isActive) {
@@ -195,13 +208,13 @@ class SiteController extends Controller {
         return true;
     }
 
-    //Render All Cart Details
+//Render All Cart Details
     public function actionViewcart() {
 
         return $this->render('view_cart');
     }
 
-    //Render Cart Table
+//Render Cart Table
     public function actionTablecart() {
         $list = [];
         $session = Yii::$app->session;
@@ -214,7 +227,7 @@ class SiteController extends Controller {
                 $list[] = $result;
             }
         }
-        // Yii::$app->response->format = Response::FORMAT_JSON;
+// Yii::$app->response->format = Response::FORMAT_JSON;
         return $this->renderAjax('table_cart', ['list' => $list]);
     }
 
@@ -268,6 +281,46 @@ class SiteController extends Controller {
                     'category_all' => $category_all,
                     'pagination' => $pagination,
         ]);
+    }
+
+    public function actionCheckOut() {
+        $list = [];
+        $session = Yii::$app->session;
+        if (!$session->isActive) {
+            $session->open();
+        }
+        if ($session->has('cart')) {
+
+            foreach ($_SESSION['cart'] as $result) {
+                $list[] = $result;
+            }
+        }
+        $mpesa = \backend\modules\settings\models\SettingsPaymentMethods::find()->where(['payment_type' => 'Mpesa'])->one();
+        $cash = \backend\modules\settings\models\SettingsPaymentMethods::find()->where(['payment_type' => 'Cash'])->one();
+
+        $profile = Profile::findOne(Yii::$app->user->id);
+        if ($profile->load(Yii::$app->request->post()) && $profile->save()) {
+            var_dump($profile->payment_method);
+            die();
+            if ($profile->payment_method == $mpesa->id) {
+                return $this->redirect(['mpesa-payment']);
+            } else
+            if ($profile->payment_method == $cash->id) {
+                return $this->redirect(['cash-payment']);
+            }
+            return $this->render('checkout', [
+                        'list' => $list,
+                        'profile' => $profile,
+            ]);
+        }
+    }
+
+    public function actionMpesaPaymnent() {
+        return $this->render('payments/mpesa');
+    }
+
+    public function actionCashPayment() {
+
     }
 
     /**

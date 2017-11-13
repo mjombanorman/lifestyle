@@ -33,6 +33,8 @@
         "2amigos/yii2-ckeditor-widget": "^1.0@dev",
         "borales/yii2-phone-input": "*",
         "froala/yii2-froala-editor": "dev-master",
+        "kartik-v/yii2-social": "@dev",
+        "dektrium/yii2-user": "^0.9.0@dev",
         "2amigos/yii2-usuario": "~1.0"
     },
     "require-dev": {

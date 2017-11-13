@@ -12,7 +12,8 @@ use yii\widgets\ActiveForm;
 
     <?php
     $form = ActiveForm::begin([
-                'enableAjaxValidation' => true,
+                'enableAjaxValidation' => false,
+                'enableClientValidation' => true,
                 'options' => [
                     'id' => 'add-category',
                     'enctype' => 'multipart/form-data',

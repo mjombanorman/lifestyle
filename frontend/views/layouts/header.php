@@ -43,7 +43,7 @@ $url = Yii::$app->urlManager;
                                 </a>
                             </li>
                             <li>
-                                <a href="<?= Yii::$app->user->isGuest ? $url->createUrl(['/site/login']) : $url->createUrl(['site/logmeout']); ?>" data-method="post">
+                                <a href="<?= Yii::$app->user->isGuest ? $url->createUrl(['/user/login']) : $url->createUrl(['site/logmeout']); ?>" data-method="post">
                                     <i class="zmdi zmdi-lock"></i>
                                     <?= Yii::$app->user->isGuest ? 'Login' : 'Log Out'; ?>
                                 </a>

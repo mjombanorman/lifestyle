@@ -83,7 +83,7 @@
                     </tr>
                 </table>
                 <br>
-                <button class="submit-btn-1 black-bg btn-hover-2" type="submit">Next</button>
+                <a href ="<?= Yii::$app->urlManager->createUrl(['site/check-out']) ?>" class="btn submit-btn-1 black-bg btn-hover-2" >--Next--</a>
             </div>
         </div>
 

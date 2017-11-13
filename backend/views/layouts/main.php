@@ -104,8 +104,8 @@ $user = Yii::$app->user->identity;
         <!--Render QuickView Right Sidebar-->
         <?php // $this->render('quick_view') ?>
 
-        <!--Render Search-->
-        <?= $this->render('search') ?>
+        <!-- Render Search-->
+        <?php //echo $this->render('search') ?>
 
         <!--Important Scripts-->
         <script>

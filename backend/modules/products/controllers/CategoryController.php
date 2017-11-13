@@ -39,6 +39,10 @@ class CategoryController extends Controller {
      * Lists all Category models.
      * @return mixed
      */
+    public function actionTest() {
+        return $this->render('test');
+    }
+
     public function actionIndex() {
         $searchModel = new CategorySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);

@@ -116,8 +116,8 @@ $this->params['breadcrumbs'][] = $this->title;
         ];
         echo GridView::widget([
             'dataProvider' => $dataProvider,
-            'filterModel' => $searchModel,
-            'filterUrl' => Url::to(['index']),
+            //'filterModel' => $searchModel,
+            //'filterUrl' => Url::to(['index']),
             'columns' => $gridColumns,
             'containerOptions' => ['style' => 'overflow: auto'], // only set when $responsive = false
             'toolbar' => [
@@ -129,7 +129,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 '{toggleData}'
             ],
             'pjax' => false,
-            'bordered' => true,
+            'bordered' => false,
             'striped' => true,
             'condensed' => true,
             'responsive' => true,

@@ -16,8 +16,7 @@ class SignupForm extends Model {
     public $password;
     public $password_confirm;
     public $role;
-    public $first_name;
-    public $last_name;
+    public $newsletter;
 
     /**
      * @inheritdoc
@@ -25,7 +24,6 @@ class SignupForm extends Model {
     public function rules() {
         return [
                 ['username', 'trim'],
-                [['first_name', 'last_name'], 'required'],
                 ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
                 ['username', 'string', 'min' => 2, 'max' => 255],
                 ['email', 'trim'],

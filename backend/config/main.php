@@ -52,14 +52,18 @@ return [
         'request' => [
             'csrfParam' => '_csrf-backend',
         ],
-        'user' => [
-            'identityClass' => 'common\models\User',
-            'enableAutoLogin' => true,
-            'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
-        ],
+        //        'user' => [
+        //            'identityClass' => 'common\models\User',
+        //            'enableAutoLogin' => true,
+        //            'identityCookie' => [
+        //                'name' => '_backendUser', // unique for backend
+        //                'path' => '/admin', // correct path for backend app.
+        //                'httpOnly' => true
+        //            ]
+        //        ],
         'session' => [
-            // this is the name of the session cookie used for login on the backend
-            'name' => 'advanced-backend',
+            'name' => '_backendSessionId',
+            'savePath' => __DIR__ . '/../runtime/sessions',
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -75,7 +79,15 @@ return [
         ],
         'assetManager' => [
             'bundles' => [
-                'yii\web\JqueryAsset' => false,
+                'yii\web\JqueryAsset' => [
+                    //'sourcePath' => null,
+                    'basePath' => '@webroot',
+                    'baseUrl' => '@web',
+                    'js' => [
+                        'themes/p_theme/assets/plugins/jquery/jquery-1.11.1.min.js',
+                    ]
+                ],
+            // 'yii\bootstrap\BootstrapAsset' => false,
             ],
         ],
         'errorHandler' => [
@@ -115,6 +127,7 @@ return [
             'admin/*',
             'gii/*',
             'debug/*',
+            'user/*',
         // The actions listed here will be allowed to everyone including guests.
         // So, 'admin/*' should not appear here in the production, of course.
         // But in the earlier stages of your development, you may probably want to

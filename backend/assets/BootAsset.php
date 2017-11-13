@@ -24,15 +24,16 @@ class BootAsset extends AssetBundle {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'assets/plugins/bootstrapv3/css/bootstrap.min.css',
-        'assets/plugins/bootstrapv3/css/bootstrap-theme.min.css',
+        'themes/p_theme/assets/plugins/bootstrap/css/bootstrap.min.css',
+            // 'themes/p_theme/assets/plugins/bootstrapv3/css/bootstrap-theme.min.css',
     ];
     public $js = [
             //  'assets/plugins/bootstrapv3/js/bootstrap.min.js',
     ];
     public $depends = [
-        'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapAsset',
+            //'yii\web\YiiAsset',
+            //'yii\web\JqueryAsset',
+            //'yii\bootstrap\BootstrapAsset',
     ];
 
 }
